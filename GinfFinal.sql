@@ -1,4 +1,4 @@
---
+﻿--
 -- PostgreSQL database dump
 --
 
@@ -74,21 +74,12 @@ ALTER TABLE usuario OWNER TO postgres;
 -- Data for Name: admin; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY admin (nickname, nome, email, senha) FROM stdin;
-Macaé	joão	jjj@.com	123
-\.
-
 
 --
 -- TOC entry 2139 (class 0 OID 49486)
 -- Dependencies: 181
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
-COPY usuario (nickname, nome, email, senha) FROM stdin;
-EA	GuiGO111	gui@gmail.com	joystich
-\.
-
 
 --
 -- TOC entry 2022 (class 2606 OID 49490)
