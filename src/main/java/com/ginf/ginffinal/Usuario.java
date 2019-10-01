@@ -9,9 +9,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kalebe
+ * @author aluno
  */
 @Entity
 @Table(name = "usuario")
@@ -29,11 +32,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Usuario.findByNickname", query = "SELECT u FROM Usuario u WHERE u.nickname = :nickname")
     , @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome")
     , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")
-    , @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
+    , @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")
+    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -49,13 +52,23 @@ public class Usuario implements Serializable {
     @Size(max = 30)
     @Column(name = "senha")
     private String senha;
-    
-    
+      @Id
+    @Basic(optional = false)
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
+    @SequenceGenerator(name = "meugerador", sequenceName = "sq_usuario")
+    @Column(name = "id")
+    private Integer id;
 
     public Usuario() {
     }
 
-    public Usuario(String nickname) {
+    public Usuario(Integer id) {
+        this.id = id;
+    }
+
+    public Usuario(Integer id, String nickname) {
+        this.id = id;
         this.nickname = nickname;
     }
 
@@ -91,11 +104,18 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (nickname != null ? nickname.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -106,7 +126,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.nickname == null && other.nickname != null) || (this.nickname != null && !this.nickname.equals(other.nickname))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -114,7 +134,8 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ginf.ginffinal.Usuario[ nickname=" + nickname + " ]";
+        return "com.ginf.ginffinal.Usuario[ id=" + id + " ]";
     }
     
 }
+
