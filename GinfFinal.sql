@@ -106,8 +106,6 @@ ALTER TABLE usuario OWNER TO postgres;
 -- Data for Name: admin; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY admin (nickname, nome, email, senha) FROM stdin;
-\.
 
 
 --
@@ -116,8 +114,6 @@ COPY admin (nickname, nome, email, senha) FROM stdin;
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY postagem (id_post, titulo, texto, data_hora, autor) FROM stdin;
-\.
 
 
 --
@@ -135,8 +131,6 @@ SELECT pg_catalog.setval('sq_usuario', 1, false);
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY usuario (nickname, nome, email, senha, id) FROM stdin;
-\.
 
 
 --
