@@ -2,24 +2,21 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.10 (Ubuntu 10.10-0ubuntu0.18.04.1)
--- Dumped by pg_dump version 10.9 (Ubuntu 10.9-0ubuntu0.18.04.1)
+-- Dumped from database version 9.5.7
+-- Dumped by pg_dump version 9.5.7
 
--- Started on 2019-10-16 23:32:25 -03
+-- Started on 2019-10-16 12:14:03 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
-SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 1 (class 3079 OID 13043)
+-- TOC entry 1 (class 3079 OID 12395)
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -27,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2951 (class 0 OID 0)
+-- TOC entry 2175 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -35,30 +32,31 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+SET search_path = public, pg_catalog;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- TOC entry 196 (class 1259 OID 16594)
+-- TOC entry 181 (class 1259 OID 16597)
 -- Name: comentario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.comentario (
+CREATE TABLE comentario (
     usuario integer,
-    comentario text NOT NULL,
-    id_comentario integer NOT NULL
+    comentario text NOT NULL
 );
 
 
-ALTER TABLE public.comentario OWNER TO postgres;
+ALTER TABLE comentario OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 16600)
+-- TOC entry 182 (class 1259 OID 16603)
 -- Name: foto; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.foto (
+CREATE TABLE foto (
     foto bytea,
     extensao text,
     id_usuario integer,
@@ -66,14 +64,14 @@ CREATE TABLE public.foto (
 );
 
 
-ALTER TABLE public.foto OWNER TO postgres;
+ALTER TABLE foto OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 16606)
+-- TOC entry 183 (class 1259 OID 16609)
 -- Name: postagem; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.postagem (
+CREATE TABLE postagem (
     id_post integer NOT NULL,
     titulo character varying(100),
     texto text,
@@ -83,14 +81,14 @@ CREATE TABLE public.postagem (
 );
 
 
-ALTER TABLE public.postagem OWNER TO postgres;
+ALTER TABLE postagem OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 16612)
+-- TOC entry 184 (class 1259 OID 16615)
 -- Name: sq_fotos; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.sq_fotos
+CREATE SEQUENCE sq_fotos
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -98,14 +96,14 @@ CREATE SEQUENCE public.sq_fotos
     CACHE 1;
 
 
-ALTER TABLE public.sq_fotos OWNER TO postgres;
+ALTER TABLE sq_fotos OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 16614)
+-- TOC entry 185 (class 1259 OID 16617)
 -- Name: sq_usuario; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.sq_usuario
+CREATE SEQUENCE sq_usuario
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -113,14 +111,14 @@ CREATE SEQUENCE public.sq_usuario
     CACHE 1;
 
 
-ALTER TABLE public.sq_usuario OWNER TO postgres;
+ALTER TABLE sq_usuario OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 16616)
+-- TOC entry 186 (class 1259 OID 16619)
 -- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.usuario (
+CREATE TABLE usuario (
     nickname character varying(20) NOT NULL,
     nome character varying(80),
     email character varying(40),
@@ -130,128 +128,151 @@ CREATE TABLE public.usuario (
 );
 
 
-ALTER TABLE public.usuario OWNER TO postgres;
+ALTER TABLE usuario OWNER TO postgres;
 
 --
--- TOC entry 2938 (class 0 OID 16594)
--- Dependencies: 196
+-- TOC entry 2162 (class 0 OID 16597)
+-- Dependencies: 181
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY comentario (usuario, comentario) FROM stdin;
+\.
 
 
 --
--- TOC entry 2939 (class 0 OID 16600)
--- Dependencies: 197
+-- TOC entry 2163 (class 0 OID 16603)
+-- Dependencies: 182
 -- Data for Name: foto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY foto (foto, extensao, id_usuario, id) FROM stdin;
+\.
+
 
 --
--- TOC entry 2940 (class 0 OID 16606)
--- Dependencies: 198
+-- TOC entry 2164 (class 0 OID 16609)
+-- Dependencies: 183
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+COPY postagem (id_post, titulo, texto, data_hora, conteudo, id_adm) FROM stdin;
+\.
 
 
 --
--- TOC entry 2943 (class 0 OID 16616)
--- Dependencies: 201
--- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
---
--- TOC entry 2952 (class 0 OID 0)
--- Dependencies: 199
+-- TOC entry 2176 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: sq_fotos; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sq_fotos', 1, false);
+SELECT pg_catalog.setval('sq_fotos', 1, false);
 
 
 --
--- TOC entry 2953 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 2177 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: sq_usuario; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sq_usuario', 18, true);
+SELECT pg_catalog.setval('sq_usuario', 16, true);
 
 
 --
--- TOC entry 2809 (class 2606 OID 16622)
--- Name: foto pk_foto; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2167 (class 0 OID 16619)
+-- Dependencies: 186
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.foto
+COPY usuario (nickname, nome, email, senha, id, admin) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2037 (class 2606 OID 16623)
+-- Name: pk_comentario; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY comentario
+    ADD CONSTRAINT pk_comentario PRIMARY KEY (comentario);
+
+
+--
+-- TOC entry 2040 (class 2606 OID 16625)
+-- Name: pk_foto; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY foto
     ADD CONSTRAINT pk_foto PRIMARY KEY (id);
 
 
 --
--- TOC entry 2814 (class 2606 OID 16624)
--- Name: usuario pk_id; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2045 (class 2606 OID 16627)
+-- Name: pk_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.usuario
+ALTER TABLE ONLY usuario
     ADD CONSTRAINT pk_id PRIMARY KEY (id);
 
 
 --
--- TOC entry 2806 (class 2606 OID 16640)
--- Name: comentario pk_id_comentario; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2043 (class 2606 OID 16644)
+-- Name: pk_id_post; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.comentario
-    ADD CONSTRAINT pk_id_comentario PRIMARY KEY (id_comentario);
-
-
---
--- TOC entry 2812 (class 2606 OID 16626)
--- Name: postagem pk_id_post; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.postagem
+ALTER TABLE ONLY postagem
     ADD CONSTRAINT pk_id_post PRIMARY KEY (id_post);
 
 
 --
--- TOC entry 2810 (class 1259 OID 16627)
+-- TOC entry 2041 (class 1259 OID 16642)
 -- Name: fki_adm; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE INDEX fki_adm ON public.postagem USING btree (id_adm);
+CREATE INDEX fki_adm ON postagem USING btree (id_adm);
 
 
 --
--- TOC entry 2807 (class 1259 OID 16628)
+-- TOC entry 2038 (class 1259 OID 16631)
 -- Name: fki_usuario; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE INDEX fki_usuario ON public.foto USING btree (id_usuario);
+CREATE INDEX fki_usuario ON foto USING btree (id_usuario);
 
 
 --
--- TOC entry 2816 (class 2606 OID 16629)
--- Name: postagem fk_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2047 (class 2606 OID 16637)
+-- Name: fk_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.postagem
-    ADD CONSTRAINT fk_adm FOREIGN KEY (id_adm) REFERENCES public.usuario(id);
+ALTER TABLE ONLY postagem
+    ADD CONSTRAINT fk_adm FOREIGN KEY (id_adm) REFERENCES usuario(id);
 
 
 --
--- TOC entry 2815 (class 2606 OID 16634)
--- Name: foto fk_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2046 (class 2606 OID 16632)
+-- Name: fk_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.foto
-    ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES public.usuario(id);
+ALTER TABLE ONLY foto
+    ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id);
 
 
--- Completed on 2019-10-16 23:32:25 -03
+--
+-- TOC entry 2174 (class 0 OID 0)
+-- Dependencies: 7
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2019-10-16 12:14:03 BRT
 
 --
 -- PostgreSQL database dump complete
 --
+

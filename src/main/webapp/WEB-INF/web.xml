@@ -4,9 +4,25 @@
         <servlet-name>ServletGinf</servlet-name>
         <servlet-class>servlet.ServletGinf</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletDeletar</servlet-name>
+        <servlet-class>servlet.ServletDeletar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>servlet.Login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletGinf</servlet-name>
         <url-pattern>/ServletGinf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletDeletar</servlet-name>
+        <url-pattern>/ServletDeletar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

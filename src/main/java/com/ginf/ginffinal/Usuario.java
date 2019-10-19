@@ -22,11 +22,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author aluno
+ * @author kalebe
  */
 @Entity
 @Table(name = "usuario")
-@XmlRootElement
+@XmlRootElement 
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByNickname", query = "SELECT u FROM Usuario u WHERE u.nickname = :nickname")
@@ -138,4 +138,3 @@ public class Usuario implements Serializable {
     }
     
 }
-

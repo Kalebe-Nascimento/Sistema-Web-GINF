@@ -75,24 +75,39 @@ public class ServletGinf extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        
+        
+        String idtext = request.getParameter("pid");
+        String nome = request.getParameter("nome");
+        String nick = request.getParameter("nickname");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+
+        //Cria instancia do usuario
         Usuario usuario = new Usuario();
-         usuario.setNickname(request.getParameter("nickname"));
-          usuario.setNome(request.getParameter("nome"));
-         usuario.setEmail(request.getParameter("email"));
-          usuario.setSenha(request.getParameter("senha"));
+        //Detecta se é usuario novo ou antigo
+        if (!idtext.isEmpty()) {
+            Integer id = Integer.parseInt(idtext);
+            usuario.setId(id);
+        }
+        //Insere informações no objeto
+        usuario.setNome(nome);
+        usuario.setNickname(nick);
+        usuario.setSenha(senha);
+        usuario.setEmail(email);
+        
         Session sessionRecheio;
         sessionRecheio = HibernateUtil.getSession();
         Transaction tr = sessionRecheio.beginTransaction();
         sessionRecheio.saveOrUpdate(usuario);
         tr.commit();
         
+        response.sendRedirect("perfil.html");
         
+       
         
-        
-        
-        
-        processRequest(request, response);
-    }
+            }
 
     /**
      * Returns a short description of the servlet.
