@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
+            out.println("<title>Servlet Login</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
@@ -75,23 +75,31 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String idtext = request.getParameter("pid");
         String email = request.getParameter("username");
         String senha = request.getParameter("pass");
-        
+
         Session session = HibernateUtil.getSession();
         Usuario usuario = (Usuario) session.createQuery("from Usuario where nickname=? and senha=?").setString(0, email).setString(1, senha).uniqueResult();
         session.close();
+
+        boolean adm = usuario.getAdmin();
+        System.out.println(adm);
 
         if (usuario == null) {
             response.sendRedirect("index.html");
         } else {
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("UsuarioLogado", usuario);
-            response.sendRedirect("index.jsp");
         }
         
+        if (adm != false) {
+            response.sendRedirect("indexUsuario.jsp");
+        } else {
+            response.sendRedirect("index.jsp");
+        }
+
         processRequest(request, response);
     }
 

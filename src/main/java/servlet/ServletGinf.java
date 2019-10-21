@@ -83,6 +83,14 @@ public class ServletGinf extends HttpServlet {
         String nick = request.getParameter("nickname");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
+        String admTela = request.getParameter("admin");
+        
+        boolean adm;
+        if(admTela != "FALSE"){
+            adm = true;
+        } else {
+            adm = false;
+        }
 
         //Cria instancia do usuario
         Usuario usuario = new Usuario();
@@ -96,6 +104,7 @@ public class ServletGinf extends HttpServlet {
         usuario.setNickname(nick);
         usuario.setSenha(senha);
         usuario.setEmail(email);
+        usuario.setAdmin(adm);
         
         Session sessionRecheio;
         sessionRecheio = HibernateUtil.getSession();
