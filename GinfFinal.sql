@@ -1,4 +1,4 @@
---
+﻿--
 -- PostgreSQL database dump
 --
 
@@ -136,8 +136,6 @@ ALTER TABLE usuario OWNER TO postgres;
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY comentario (usuario, comentario) FROM stdin;
-\.
 
 
 --
@@ -146,9 +144,6 @@ COPY comentario (usuario, comentario) FROM stdin;
 -- Data for Name: foto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY foto (foto, extensao, id_usuario, id) FROM stdin;
-\.
-
 
 --
 -- TOC entry 2164 (class 0 OID 16609)
@@ -156,8 +151,6 @@ COPY foto (foto, extensao, id_usuario, id) FROM stdin;
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY postagem (id_post, titulo, texto, data_hora, conteudo, id_adm) FROM stdin;
-\.
 
 
 --
@@ -184,8 +177,6 @@ SELECT pg_catalog.setval('sq_usuario', 16, true);
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY usuario (nickname, nome, email, senha, id, admin) FROM stdin;
-\.
 
 
 --

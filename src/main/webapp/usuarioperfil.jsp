@@ -50,7 +50,7 @@
         <header class="header-section">
             <div class="container">
 
-                <a class="site-logo" href="index.html">
+                <a class="site-logo" href="index.jsp">
                     <img src="img/" alt="">
                 </a>
                 <div class="user-panel">
@@ -63,11 +63,11 @@
 
                 <nav class="main-menu">
                     <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="review.html">Games</a></li>
-                        <li><a href="categories.html">Blog</a></li>
-                        <li><a href="community.html">Forums</a></li>
-                        <li><a href="contact.html">Contato</a></li>
+                        <li><a href="index.jsp">Inicio</a></li>
+                        <li><a href="review.jsp">Games</a></li>
+                        <li><a href="categories.jsp">Blog</a></li>
+                        <li><a href="community.jsp">Forums</a></li>
+                        <li><a href="contact.jsp">Contato</a></li>
                     </ul>
                 </nav>
             </div>
@@ -114,20 +114,18 @@
                         <form class="comment-form">
                             <div class="row">
 
-                                <%
-                                    List<Usuario> lista = UsuarioControle.listar();
-                                    request.setAttribute("usuario", lista);
-                                %>
                                 <center>
                                     <div style="padding: 10px 10px 10px 10px;">
 
                                         Nome: <%=usuario.getNome()%> <br><br>
 
-                                        <a href="alterar.jsp?pid=<%=usuario.getId()%>">Editar Perfil</a><br><br>
-
                                         User: <%=usuario.getNickname()%><br><br>
 
                                         E-mail: <%=usuario.getEmail()%><br><br>
+
+                                        ID: <%=usuario.getId()%> <br><br>
+
+                                        <a href="cadastro/alterar.jsp?pid=<%=usuario.getId()%>">Editar Perfil</a><br><br>
                                     </div>
                                 </center>
 
@@ -147,11 +145,11 @@
         <footer class="footer-section">
             <div class="container">
                 <ul class="footer-menu">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="review.html">Games</a></li>
-                    <li><a href="categories.html">Blog</a></li>
-                    <li><a href="community.html">Forums</a></li>
-                    <li><a href="contact.html">Contato</a></li>
+                    <li><a href="index.jsp">Inicio</a></li>
+                    <li><a href="review.jsp">Games</a></li>
+                    <li><a href="categories.jsp">Blog</a></li>
+                    <li><a href="community.jsp">Forums</a></li>
+                    <li><a href="contact.jsp">Contato</a></li>
                 </ul>
                 <p class="copyright">
                     &copy;<script>document.write(new Date().getFullYear());</script> GINF Corporation <i class="fa fa-heart-o" aria-hidden="true"></i> <a href="" target="_blank"></a>

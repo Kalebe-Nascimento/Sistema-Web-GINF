@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -39,7 +40,7 @@ public class ServletGinf extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletGinf</title>");            
+            out.println("<title>Servlet ServletGinf</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletGinf at " + request.getContextPath() + "</h1>");
@@ -74,23 +75,12 @@ public class ServletGinf extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
-        
+
         String idtext = request.getParameter("pid");
         String nome = request.getParameter("nome");
         String nick = request.getParameter("nickname");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        String admTela = request.getParameter("admin");
-        
-        boolean adm;
-        if(admTela != "FALSE"){
-            adm = true;
-        } else {
-            adm = false;
-        }
 
         //Cria instancia do usuario
         Usuario usuario = new Usuario();
@@ -104,19 +94,18 @@ public class ServletGinf extends HttpServlet {
         usuario.setNickname(nick);
         usuario.setSenha(senha);
         usuario.setEmail(email);
-        usuario.setAdmin(adm);
-        
+
         Session sessionRecheio;
         sessionRecheio = HibernateUtil.getSession();
         Transaction tr = sessionRecheio.beginTransaction();
         sessionRecheio.saveOrUpdate(usuario);
         tr.commit();
-        
-        response.sendRedirect("perfil.html");
-        
-       
-        
-            }
+
+        HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("UsuarioLogado", usuario);
+        response.sendRedirect("usuarioperfil.jsp");
+
+    }
 
     /**
      * Returns a short description of the servlet.

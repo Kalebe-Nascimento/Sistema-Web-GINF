@@ -22,7 +22,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <link rel="stylesheet" href="cadastro/fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
    
     <link rel="stylesheet" href="css/style.css">
@@ -55,7 +55,7 @@
         
         %>
         
-         <form method="POST" action="ServletGinf">
+         <form method="POST" action="../ServletGinf">
             <div hidden>  ID<input type="text" name="pid" value="<%=idUsuario%>"> </div>
 <div class="main">
 
