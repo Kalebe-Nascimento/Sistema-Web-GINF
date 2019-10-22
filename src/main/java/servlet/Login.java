@@ -89,9 +89,13 @@ public class Login extends HttpServlet {
         } else {
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("UsuarioLogado", usuario);
-            response.sendRedirect("index.jsp");
         }
         
+        if(usuario.getAdmin() == "false"){
+            response.sendRedirect("index.jsp");
+        } else {
+            // redirecionar para página .jsp do admin
+        }
         processRequest(request, response);
     }
 

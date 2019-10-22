@@ -9,12 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,18 +19,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kalebe
+ * @author aluno
  */
 @Entity
 @Table(name = "usuario")
-@XmlRootElement 
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByNickname", query = "SELECT u FROM Usuario u WHERE u.nickname = :nickname")
     , @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome")
     , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")
     , @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")
-    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")})
+    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")
+    , @NamedQuery(name = "Usuario.findByAdmin", query = "SELECT u FROM Usuario u WHERE u.admin = :admin")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,13 +50,14 @@ public class Usuario implements Serializable {
     @Size(max = 30)
     @Column(name = "senha")
     private String senha;
-      @Id
+    @Id
     @Basic(optional = false)
     @NotNull
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
-    @SequenceGenerator(name = "meugerador", sequenceName = "sq_usuario")
     @Column(name = "id")
     private Integer id;
+    @Size(max = 2147483647)
+    @Column(name = "admin")
+    private String admin;
 
     public Usuario() {
     }
@@ -110,6 +109,14 @@ public class Usuario implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 
     @Override
