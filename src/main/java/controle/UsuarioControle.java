@@ -6,6 +6,7 @@
 package controle;
 
 
+import com.ginf.ginffinal.Postagem;
 import com.ginf.ginffinal.Usuario;
 import com.ginf.ginffinal.Usuario;
 import java.util.List;
@@ -58,6 +59,18 @@ public class UsuarioControle {
         tr.commit();
         return lista;
     }
+    
+    
+        public static List<Postagem> listarc()    {
+        Session sessionRecheio;
+        sessionRecheio = HibernateUtil.getSession();
+        Transaction tr = sessionRecheio.beginTransaction();
+        String hql = "from Postagem u";
+        List<Postagem> listac = (List)sessionRecheio.createQuery(hql).list();
+        tr.commit();
+        return listac;
+    }
+    
     
     //Função de apagar um usuario
     public static boolean deletar(Usuario usuario){

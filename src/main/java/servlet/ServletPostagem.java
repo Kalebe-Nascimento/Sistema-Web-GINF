@@ -76,12 +76,15 @@ public class ServletPostagem extends HttpServlet {
             throws ServletException, IOException {
         Postagem postagem = new Postagem();
         postagem.setConteudo(request.getParameter("conteudo"));
+        
+        
+        
         Session sessionRecheio;
         sessionRecheio = HibernateUtil.getSession();
         Transaction tr = sessionRecheio.beginTransaction();
         sessionRecheio.saveOrUpdate(postagem);
         tr.commit();
-        response.sendRedirect("Postagem.jsp");
+        response.sendRedirect("postagem.jsp");
     }
 
     /**
