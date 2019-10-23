@@ -54,7 +54,7 @@
                     <img src="img/" alt="">
                 </a>
                 <div class="user-panel">
-                    Bem-vindo, <%=usuario.getNome()%>!
+                   <a href="usuarioperfil.jsp"> Bem-vindo, <%=usuario.getNome()%>!
                 </div>
 
                 <div class="nav-switch">
@@ -93,7 +93,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-6 text-white">
-                            <h2>Seu Perfil</h2>
+                            <h2>Perfil</h2>
                             <p></p>
                         </div>
                     </div>
@@ -116,16 +116,18 @@
 
                                 <center>
                                     <div style="padding: 10px 10px 10px 10px;">
+                                        
+                                        Nickname: <%=usuario.getNickname()%><br><br>
 
                                         Nome: <%=usuario.getNome()%> <br><br>
-
-                                        User: <%=usuario.getNickname()%><br><br>
-
+                                           
                                         E-mail: <%=usuario.getEmail()%><br><br>
 
                                         ID: <%=usuario.getId()%> <br><br>
 
                                         <a href="cadastro/alterar.jsp?pid=<%=usuario.getId()%>">Editar Perfil</a><br><br>
+                                        
+                                        <a href="index.html">Sair</a><br><br>
                                     </div>
                                 </center>
 

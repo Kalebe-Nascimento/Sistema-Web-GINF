@@ -53,7 +53,7 @@
 					<li><a href="index.jsp">Inicio</a></li>
 					<li><a href="review.jsp">Games</a></li>
 					<li><a href="categories.jsp">Blog</a></li>
-					<li><a href="community.jsp">Forums</a></li>
+					<li><a href="community.jsp">Fórum</a></li>
 					<li><a href="contact.jsp">Contato</a></li>
 				</ul>
 			</nav>
@@ -161,9 +161,9 @@
 					</li>
 					<li>
 						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="img/authors/joyce.jpg"></div>
+							<div class="author-avator set-bg" data-setbg=""></div>
 							<div class="post-content">
-								<h5>Joyce Kelly <span>postou uma atualização</span></h5>
+								<h5>Kalebe main Zofia <span>postou uma atualização</span></h5>
 								<div class="post-date">2018</div>
 								<p> </p>
 							</div>
