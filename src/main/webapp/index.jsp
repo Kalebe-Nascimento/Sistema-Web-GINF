@@ -52,7 +52,7 @@
                         <li><a href="index.jsp">Inicio</a></li>
                         <li><a href="review.jsp">Noticia</a></li>
                         <li><a href="categories.jsp">Blog</a></li>
-                        <li><a href="community.jsp">Forums</a></li>
+                        
                         <li><a href="contact.jsp">Contato</a></li>
                     </ul>
                 </nav>
@@ -89,9 +89,9 @@
             <div class="ln-title">Novas Noticias</div>
             <div class="news-ticker">
                 <div class="news-ticker-contant">
-                    <div class="nt-item"><span class="new">Novo</span> Novas atualização sobre o site.  </div>
-                    <div class="nt-item"><span class="strategy">Estrategia</span> Novas atualizações dos jogos de Estrategia.  </div>
-                    <div class="nt-item"><span class="racing">Corrida</span> Novas atualizações dos jogos de corrida . </div>
+                    <div class="nt-item"><span class="new">Novo</span> </div>
+                    <div class="nt-item"><span class="strategy">Estrategia</span> </div>
+                    <div class="nt-item"><span class="racing">Corrida</span>  </div>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                             <span class="cata strategy">Estrategia</span>
                             <div class="fi-content text-white">
                                 <h5><a href="#"></a>Melhore a suas estrategia.</h5>
-                                <p>Tenha a melhor lugar para conhecer pessoas que gostam de jogos de estrategia, e melhorem a sua. </p>
+                                <p> </p>
                                 <a href="#" class="fi-comment">3 Comentarios</a>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                         <div class="feature-item set-bg" data-setbg="img/features/3.jpg">
                             <span class="cata new">Tiro</span>
                             <div class="fi-content text-white">
-                                <h5><a href="#">A poste a quele x1 ou faça a sua e quipe e ganhe a partida</a></h5>
+                                <h5><a href="#"></a></h5>
                                 <p> </p>
                                 <a href="#" class="fi-comment">3 Comentarios</a>
                             </div>
@@ -134,7 +134,7 @@
                             <span class="cata racing">Corrida</span>
                             <div class="fi-content text-white">
                                 <h5><a href="#">A poste corrida </a></h5>
-                                <p>A poste com varias pessoas de varios jogos de corrida e ganhe. </p>
+                                <p> </p>
 
                                 <a href="#" class="fi-comment">3 Comentarios</a>
                             </div>
@@ -203,49 +203,7 @@
             </div>
         </section>
 
-        <section class="tournaments-section spad">
-            <div class="container">
-                <div class="tournament-title">Torneios</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="tournament-item mb-4 mb-lg-0">
-                            <div class="ti-notic">Torneio Premium</div>
-                            <div class="ti-content">
-                                <div class="ti-thumb set-bg" data-setbg="img/tournament/1.jpg"></div>
-                                <div class="ti-text">
-                                    <h4>World Of WarCraft</h4>
-                                    <ul>
-                                        <li><span>Torneio começa:</span> Janeiro 20, 2018</li>
-                                        <li><span>Torneio termina:</span> Julho 01, 2018</li>
-                                        <li><span>Participantes:</span> 10 times</li>
-                                        <li><span>Autor do torneio:</span> Admin</li>
-                                    </ul>
-                                    <p><span>Prêmios:</span> 1º lugar $ 2000, 2º lugar: $ 1000, 3º lugar: $ 500</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="tournament-item">
-                            <div class="ti-notic">Torneio </div>
-                            <div class="ti-content">
-                                <div class="ti-thumb set-bg" data-setbg="img/tournament/2.jpg"></div>
-                                <div class="ti-text">
-                                    <h4>DOOM</h4>
-                                    <ul>
-                                        <li><span>Torneio começa:</span> Agosto 20, 2018</li>
-                                        <li><span>Torneio termina:</span> Setembro 01, 2018</li>
-                                        <li><span>Participantes:</span> 10 times</li>
-                                        <li><span>Autor do torneio:</span> Admin</li>
-                                    </ul>
-                                    <p><span>Prêmios:</span>1º lugar $ 2000, 2º lugar: $ 1000, 3º lugar: $ 500</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
 
 
@@ -306,92 +264,7 @@
 
 
 
-        <section class="footer-top-section">
-            <div class="container">
-                <div class="footer-top-bg">
-                    <img src="img/footer-top-bg.png" alt="">
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="footer-logo text-white">
-                            <img src="img/footer-logo" alt="">
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget mb-5 mb-md-0">
-                            <h4 class="fw-title">últimas postagens</h4>
-                            <div class="latest-blog">
-                                <div class="lb-item">
-                                    <div class="lb-thumb set-bg" data-setbg="img/latest-blog/1.jpg"></div>
-                                    <div class="lb-content">
-                                        <div class="lb-date">43 semanas atrás</div>
-                                        <p> Para comemorar, a PUBG Corp, desenvolvedora do game, vai presentear todos os jogadores da versão para Xbox com 30 mil Battle Points. </p>
-                                        <a href="#" class="lb-author">Por Admin</a>
-                                    </div>
-                                </div>
-                                <div class="lb-item">
-                                    <div class="lb-thumb set-bg" data-setbg="img/latest-blog/2.jpg"></div>
-                                    <div class="lb-content">
-                                        <div class="lb-date">Hoje</div>
-                                        <p>Playerunknown?s Battlegrounds recebeu na noite de ontem uma atualização que trouxe vários novos elementos e alterações no game. Confira abaixo as novidades:
-
-                                            Antes de continuar: Tá precisando comprar cartões pré-pagos para Xbox One, PS4 ou Nintendo? O melhor lugar é na GCM Games, clique aqui e confira!
-
-                                            Sistema de região: O servidor / região será agora decidido automaticamente, dependendo da região local do jogador. Se você agrupar com um jogador de outra região, o matchmaking decidirá automaticamente a melhor região para jogar. </p>
-                                        <a href="#" class="lb-author">Por Admin</a>
-                                    </div>
-                                </div>
-                                <div class="lb-item">
-                                    <div class="lb-thumb set-bg" data-setbg="img/latest-blog/3.jpg"></div>
-                                    <div class="lb-content">
-                                        <div class="lb-date">Dezembro 20 , 2018</div>
-                                        <p>Evento de natal </p>
-                                        <a href="#" class="lb-author">Por Admin</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget">
-                            <h4 class="fw-title">Melhores Comentários</h4>
-                            <div class="top-comment">
-                                <div class="tc-item">
-                                    <div class="tc-thumb set-bg" data-setbg="img/authors/facebook.marcos.jpg"></div>
-                                    <div class="tc-content">
-                                        <p><a href="#">Marcos Vinícius</a> <span>on</span> Vocês viram a nova dlc do GTAV?</p>
-                                        <div class="tc-date">Maio 22, 2018</div>
-                                    </div>
-                                </div>
-                                <div class="tc-item">
-                                    <div class="tc-thumb set-bg" data-setbg="img/authors/carlos.jpg"></div>
-                                    <div class="tc-content">
-                                        <p><a href="#">Carlos Eduardo</a> <span>off</span> Alguem viu a nova temporada do League of Legends?  </p>
-                                        <div class="tc-date">Julho 24, 2018</div>
-                                    </div>
-                                </div>
-                                <div class="tc-item">
-                                    <div class="tc-thumb set-bg" data-setbg="img/authors/joyce.jpg"></div>
-                                    <div class="tc-content">
-                                        <p><a href="#">Joyce Kelly</a> <span>off</span> Estou adorando jogar Free Frire. </p>
-                                        <div class="tc-date">Dezembro 18, 2018</div>
-                                    </div>
-                                </div>
-                                <div class="tc-item">
-                                    <div class="tc-thumb set-bg" data-setbg="img/authors/antoni.jpg"></div>
-                                    <div class="tc-content">
-                                        <p><a href="#">Ântoni Micael</a> <span>on</span> Eu não sei vocês  mais eu adoro jogar com a Shelly do Brawl Stars. </p>
-                                        <div class="tc-date">Fevereiro 21, 2018</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+       
         <footer class="footer-section">
             <div class="container">
                 <ul class="footer-menu">
