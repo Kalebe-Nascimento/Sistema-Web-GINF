@@ -22,19 +22,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author aluno
+ * @author kalebe
  */
 @Entity
 @Table(name = "usuario")
-@XmlRootElement
+@XmlRootElement 
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByNickname", query = "SELECT u FROM Usuario u WHERE u.nickname = :nickname")
     , @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome")
     , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")
     , @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")
-    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")
-    , @NamedQuery(name = "Usuario.findByAdmin", query = "SELECT u FROM Usuario u WHERE u.admin = :admin")})
+    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,30 +42,23 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "nickname")
     private String nickname;
-    
     @Size(max = 80)
     @Column(name = "nome")
     private String nome;
-    
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 40)
     @Column(name = "email")
     private String email;
-    
     @Size(max = 30)
     @Column(name = "senha")
     private String senha;
-    
-    @Id
+      @Id
     @Basic(optional = false)
     @NotNull
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
     @SequenceGenerator(name = "meugerador", sequenceName = "sq_usuario")
     @Column(name = "id")
     private Integer id;
-    
-    @Column(name = "admin")
-    private Boolean admin;
 
     public Usuario() {
     }
@@ -118,14 +110,6 @@ public class Usuario implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Boolean getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
     }
 
     @Override
