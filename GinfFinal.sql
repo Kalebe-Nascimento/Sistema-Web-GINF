@@ -1,11 +1,11 @@
-﻿--
+--
 -- PostgreSQL database dump
 --
 
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2019-10-16 12:14:03 BRT
+-- Started on 2019-10-29 13:01:36 BRST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2175 (class 0 OID 0)
+-- TOC entry 2163 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -39,7 +39,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 181 (class 1259 OID 16597)
+-- TOC entry 181 (class 1259 OID 58068)
 -- Name: comentario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -52,22 +52,7 @@ CREATE TABLE comentario (
 ALTER TABLE comentario OWNER TO postgres;
 
 --
--- TOC entry 182 (class 1259 OID 16603)
--- Name: foto; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE foto (
-    foto bytea,
-    extensao text,
-    id_usuario integer,
-    id integer NOT NULL
-);
-
-
-ALTER TABLE foto OWNER TO postgres;
-
---
--- TOC entry 183 (class 1259 OID 16609)
+-- TOC entry 182 (class 1259 OID 58080)
 -- Name: postagem; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -84,22 +69,7 @@ CREATE TABLE postagem (
 ALTER TABLE postagem OWNER TO postgres;
 
 --
--- TOC entry 184 (class 1259 OID 16615)
--- Name: sq_fotos; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE sq_fotos
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE sq_fotos OWNER TO postgres;
-
---
--- TOC entry 185 (class 1259 OID 16617)
+-- TOC entry 183 (class 1259 OID 58088)
 -- Name: sq_usuario; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -114,7 +84,7 @@ CREATE SEQUENCE sq_usuario
 ALTER TABLE sq_usuario OWNER TO postgres;
 
 --
--- TOC entry 186 (class 1259 OID 16619)
+-- TOC entry 184 (class 1259 OID 58090)
 -- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -124,63 +94,46 @@ CREATE TABLE usuario (
     email character varying(40),
     senha character varying(30),
     id integer NOT NULL,
-    admin boolean
+    admin character varying,
+    foto bytea
 );
 
 
 ALTER TABLE usuario OWNER TO postgres;
 
 --
--- TOC entry 2162 (class 0 OID 16597)
+-- TOC entry 2152 (class 0 OID 58068)
 -- Dependencies: 181
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
-
 --
--- TOC entry 2163 (class 0 OID 16603)
+-- TOC entry 2153 (class 0 OID 58080)
 -- Dependencies: 182
--- Data for Name: foto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
---
--- TOC entry 2164 (class 0 OID 16609)
--- Dependencies: 183
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2176 (class 0 OID 0)
--- Dependencies: 184
--- Name: sq_fotos; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('sq_fotos', 1, false);
-
-
---
--- TOC entry 2177 (class 0 OID 0)
--- Dependencies: 185
+-- TOC entry 2164 (class 0 OID 0)
+-- Dependencies: 183
 -- Name: sq_usuario; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sq_usuario', 16, true);
+SELECT pg_catalog.setval('sq_usuario', 31, true);
 
 
 --
--- TOC entry 2167 (class 0 OID 16619)
--- Dependencies: 186
+-- TOC entry 2155 (class 0 OID 58090)
+-- Dependencies: 184
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2037 (class 2606 OID 16623)
+-- TOC entry 2031 (class 2606 OID 58094)
 -- Name: pk_comentario; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -189,16 +142,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- TOC entry 2040 (class 2606 OID 16625)
--- Name: pk_foto; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY foto
-    ADD CONSTRAINT pk_foto PRIMARY KEY (id);
-
-
---
--- TOC entry 2045 (class 2606 OID 16627)
+-- TOC entry 2036 (class 2606 OID 58098)
 -- Name: pk_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -207,7 +151,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- TOC entry 2043 (class 2606 OID 16644)
+-- TOC entry 2034 (class 2606 OID 58100)
 -- Name: pk_id_post; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -216,7 +160,7 @@ ALTER TABLE ONLY postagem
 
 
 --
--- TOC entry 2041 (class 1259 OID 16642)
+-- TOC entry 2032 (class 1259 OID 58101)
 -- Name: fki_adm; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -224,15 +168,7 @@ CREATE INDEX fki_adm ON postagem USING btree (id_adm);
 
 
 --
--- TOC entry 2038 (class 1259 OID 16631)
--- Name: fki_usuario; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX fki_usuario ON foto USING btree (id_usuario);
-
-
---
--- TOC entry 2047 (class 2606 OID 16637)
+-- TOC entry 2037 (class 2606 OID 58103)
 -- Name: fk_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -241,16 +177,7 @@ ALTER TABLE ONLY postagem
 
 
 --
--- TOC entry 2046 (class 2606 OID 16632)
--- Name: fk_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY foto
-    ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id);
-
-
---
--- TOC entry 2174 (class 0 OID 0)
+-- TOC entry 2162 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -261,9 +188,10 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2019-10-16 12:14:03 BRT
+-- Completed on 2019-10-29 13:01:36 BRST
 
 --
 -- PostgreSQL database dump complete
 --
+
 
