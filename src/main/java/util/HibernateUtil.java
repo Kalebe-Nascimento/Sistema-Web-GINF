@@ -6,6 +6,7 @@
 package util;
 
 
+import com.ginf.ginffinal.Postagem;
 import com.ginf.ginffinal.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,6 +36,7 @@ public class HibernateUtil {
         AnnotationConfiguration cfg = new AnnotationConfiguration();
         cfg.configure();
         cfg.addAnnotatedClass(Usuario.class);
+        cfg.addAnnotatedClass(Postagem.class);
         factory = cfg.buildSessionFactory();
     }
 

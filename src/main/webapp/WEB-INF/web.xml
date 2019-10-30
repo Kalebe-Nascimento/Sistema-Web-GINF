@@ -12,6 +12,14 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPostagem</servlet-name>
+        <servlet-class>servlet.ServletPostagem</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPostagem</servlet-name>
+        <url-pattern>/ServletPostagem</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletGinf</servlet-name>
         <url-pattern>/ServletGinf</url-pattern>

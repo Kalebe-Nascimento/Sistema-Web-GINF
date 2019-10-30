@@ -6,8 +6,10 @@
 package servlet;
 
 import com.ginf.ginffinal.Postagem;
+import com.ginf.ginffinal.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +41,7 @@ public class ServletPostagem extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletPostagem</title>");            
+            out.println("<title>Servlet ServletPostagem</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletPostagem at " + request.getContextPath() + "</h1>");
@@ -76,12 +78,19 @@ public class ServletPostagem extends HttpServlet {
             throws ServletException, IOException {
         Postagem postagem = new Postagem();
         postagem.setConteudo(request.getParameter("conteudo"));
+        postagem.setTitulo(request.getParameter("titulo"));
+        Usuario admin = (Usuario) request.getSession().getAttribute("UsuarioLogado");
+
+        Date agora = new Date();
+        postagem.setDataHora(agora);
+
+        postagem.setIdAdm(admin);
         Session sessionRecheio;
         sessionRecheio = HibernateUtil.getSession();
         Transaction tr = sessionRecheio.beginTransaction();
         sessionRecheio.saveOrUpdate(postagem);
         tr.commit();
-        response.sendRedirect("Postagem.jsp");
+        response.sendRedirect("index.jsp");
     }
 
     /**
