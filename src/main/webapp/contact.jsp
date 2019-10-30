@@ -21,9 +21,6 @@
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/animate.css"/>
 
-        <%
-            Usuario usuario = (Usuario) session.getAttribute("UsuarioLogado");
-        %>
 
 
     </head>

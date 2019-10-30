@@ -20,9 +20,7 @@
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/animate.css"/>
 
-        <%
-            Usuario usuario = (Usuario) session.getAttribute("UsuarioLogado");
-        %>
+       
 
 
     </head>
@@ -33,32 +31,8 @@
 	</div>
 
 
-	<header class="header-section">
-		<div class="container">
-			
-			<a class="site-logo" href="index.jsp">
-				<img src="img/logo" alt="">
-			</a>
-                            
-                <div class="user-panel">
-                    <a href="usuarioperfil.jsp">Bem-vindo, <%=usuario.getNome()%>!</a>
-                </div>
-			
-			<div class="nav-switch">
-				<i class="fa fa-bars"></i>
-			</div>
-			
-			<nav class="main-menu">
-				<ul>
-					<li><a href="index.jsp">Inicio</a></li>
-					<li><a href="review.jsp">Noticias</a></li>
-					<li><a href="categories.jsp">Videos</a></li>
-				
-					<li><a href="contact.jsp">Contato</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+	  <%@include file="menutop.jspf" %>
+        
 	
 
 	<div class="latest-news-section">
