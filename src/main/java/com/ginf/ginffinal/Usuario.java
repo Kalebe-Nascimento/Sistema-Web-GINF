@@ -49,6 +49,8 @@ public class Usuario implements Serializable {
     @Size(max = 40)
     @Column(name = "email")
     private String email;
+    @Column(name = "admin")
+    private boolean admin = false;
     @Size(max = 30)
     @Column(name = "senha")
     private String senha;
@@ -135,6 +137,20 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.ginf.ginffinal.Usuario[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the admin
+     */
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    /**
+     * @param admin the admin to set
+     */
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
     
 }

@@ -1,4 +1,3 @@
-<%@page import="com.ginf.ginffinal.Usuario"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -31,10 +30,6 @@
 
         <%@include file="menutop.jspf" %>
         
-
-
-
-
         <section class="hero-section">
             <div class="hero-slider owl-carousel">
                 <div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
