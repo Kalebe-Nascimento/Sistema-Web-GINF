@@ -115,6 +115,10 @@
                             <div class="row">
 
                                 <center>
+                                    
+                                     <input type="file" name="foto" accept="image/png, image/jpeg"><br><br>
+
+                                    
                                     <div style="padding: 10px 10px 10px 10px;">
                                         
                                         Nickname: <%=usuario.getNickname()%><br><br>
