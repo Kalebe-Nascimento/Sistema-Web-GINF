@@ -56,20 +56,19 @@ public class Usuario implements Serializable {
     private String senha;
     @Id
     @Basic(optional = false)
+    
     @NotNull
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
+    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
     @SequenceGenerator(name = "meugerador", sequenceName = "sq_usuario")
+    
     @Column(name = "id")
     private Integer id;
-    @Size(max = 2147483647)
-    @Column(name = "admin")
-    private String admin;
     //@Lob
     @Column(name = "foto")
     private byte[] foto;
-    
-    
-    
+    @Column(name = "admin")
+    private Boolean admin;
 
     public Usuario() {
     }
@@ -123,20 +122,20 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
-
     public byte[] getFoto() {
         return foto;
     }
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
     @Override
