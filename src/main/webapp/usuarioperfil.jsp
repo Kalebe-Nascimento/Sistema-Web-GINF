@@ -116,8 +116,14 @@
 
                                 <center>
                                     
-                                     <input type="file" name="foto" accept="image/png, image/jpeg"><br><br>
+                                    <input type="file" name="foto" accept="image/png, image/jpeg" value="Selecione sua foto de perfil" ><br><br>
 
+                                    
+                                    <%
+                                    byte[] imagem = usuario.getFoto();
+                                    String usuarioFoto = Base64.getEncoder().encodeToString(imagem);
+                                     %>
+                                     
                                     
                                     <div style="padding: 10px 10px 10px 10px;">
                                         
