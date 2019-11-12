@@ -107,8 +107,7 @@ ALTER TABLE usuario OWNER TO postgres;
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY comentario (usuario, comentario) FROM stdin;
-\.
+
 
 
 --
@@ -117,8 +116,7 @@ COPY comentario (usuario, comentario) FROM stdin;
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY postagem (id_post, titulo, texto, data_hora, conteudo, id_adm) FROM stdin;
-\.
+
 
 
 --
@@ -136,10 +134,7 @@ SELECT pg_catalog.setval('sq_usuario', 33, true);
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY usuario (nickname, nome, email, senha, id, foto, admin) FROM stdin;
-cesar	Cesar Geleia	luizcanf@gmail.com	123	1600	\N	t
-PlayerUnnamed	Marcos	marcosviniciusgomesssantos@gmail.com	dcuc289s	1650	\N	t
-\.
+
 
 
 --
@@ -203,7 +198,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-<<<<<<< HEAD
 
-=======
->>>>>>> c7f1da172d32760a7cd67126d1fbaa6372d15fba
