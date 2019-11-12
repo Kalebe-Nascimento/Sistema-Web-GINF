@@ -12,18 +12,6 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.Login</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ServletPostagem</servlet-name>
-        <servlet-class>servlet.ServletPostagem</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>servlet.Logout</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletPostagem</servlet-name>
-        <url-pattern>/ServletPostagem</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletGinf</servlet-name>
         <url-pattern>/ServletGinf</url-pattern>
@@ -35,10 +23,6 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

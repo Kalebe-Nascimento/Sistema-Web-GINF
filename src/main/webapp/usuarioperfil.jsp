@@ -31,9 +31,7 @@
         <link rel="stylesheet" href="css/owl.carousel.css"/>
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/animate.css"/>
-        <%
-            Usuario usuario = (Usuario) session.getAttribute("UsuarioLogado");
-        %>
+
 
 
     </head>
@@ -47,31 +45,7 @@
         </div>
 
 
-        <header class="header-section">
-            <div class="container">
-
-                <a class="site-logo" href="index.jsp">
-                    <img src="img/" alt="">
-                </a>
-                <div class="user-panel">
-                   <a href="usuarioperfil.jsp"> Bem-vindo, <%=usuario.getNome()%>!
-                </div>
-
-                <div class="nav-switch">
-                    <i class="fa fa-bars"></i>
-                </div>
-
-                <nav class="main-menu">
-                    <ul>
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="review.jsp">Games</a></li>
-                        <li><a href="categories.jsp">Blog</a></li>
-                        <li><a href="community.jsp">Forums</a></li>
-                        <li><a href="contact.jsp">Contato</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <%@include file="menutop.jspf" %>
 
 
 
@@ -79,11 +53,11 @@
             <div class="ln-title">Novas Noticias</div>
             <div class="news-ticker">
                 <div class="news-ticker-contant">
-                    <div class="nt-item"><span class="new">Novo</span> Novas atualização sobre o site.  </div>
-                    <div class="nt-item"><span class="strategy">Estrategia</span> Novas atualizações dos jogos de Estrategia.  </div>
-                    <div class="nt-item"><span class="racing">Corrida</span> Novas atualizações dos jogos de corrida . </div>
-                    <div class="nt-item"><span class="strategy">MMORPG</span>Especial de nata no Black desert esta bombando. </div>
-                    <div class="nt-item"><span class="racing">MOBA</span>A nova pré-temporada do LOL já começou a proveite. </div>
+                    <div class="nt-item"><span class="new">Novo</span> </div>
+                    <div class="nt-item"><span class="strategy">Estrategia</span>   </div>
+                    <div class="nt-item"><span class="racing">Corrida</span> </div>
+                    <div class="nt-item"><span class="strategy">MMORPG</span> </div>
+                    <div class="nt-item"><span class="racing">MOBA</span> </div>
                 </div>
             </div>
         </div>
@@ -115,16 +89,6 @@
                             <div class="row">
 
                                 <center>
-                                    
-                                  
-
-                                    
-                                    <%
-                                 //   byte[] imagem = usuario.getFoto();
-                                   // String usuarioFoto = Base64.getEncoder().encodeToString(imagem);
-                                     %>
-                                     
-                                    
                                     <div style="padding: 10px 10px 10px 10px;">
                                         
                                         Nickname: <%=usuario.getNickname()%><br><br>
@@ -137,7 +101,7 @@
 
                                         <a href="cadastro/alterar.jsp?pid=<%=usuario.getId()%>">Editar Perfil</a><br><br>
                                         
-                                        <a href="Logout">Sair</a><br><br>
+                                        <a href="index.html">Sair</a><br><br>
                                     </div>
                                 </center>
 
@@ -159,8 +123,8 @@
                 <ul class="footer-menu">
                     <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="review.jsp">Games</a></li>
-                    <li><a href="categories.jsp">Blog</a></li>
-                    <li><a href="community.jsp">Forums</a></li>
+                    <li><a href="categories.jsp">Videos</a></li>
+                    
                     <li><a href="contact.jsp">Contato</a></li>
                 </ul>
                 <p class="copyright">

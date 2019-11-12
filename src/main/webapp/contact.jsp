@@ -21,9 +21,6 @@
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/animate.css"/>
 
-        <%
-            Usuario usuario = (Usuario) session.getAttribute("UsuarioLogado");
-        %>
 
 
     </head>
@@ -32,34 +29,10 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
+    <%@include file="menutop.jspf" %>
 
 	
-	<header class="header-section">
-		<div class="container">
-			
-			<a class="site-logo" href="index.jsp">
-				<img src="img/" alt="">
-			</a>
-                        <div class="user-panel">
-                    <a href="usuarioperfil.jsp">Bem-vindo, <%=usuario.getNome()%>!</a>
-                        </div>
-		
-			
-			<div class="nav-switch">
-				<i class="fa fa-bars"></i>
-			</div>
-			
-			<nav class="main-menu">
-				<ul>
-					<li><a href="index.jsp">Inicio</a></li>
-					<li><a href="review.jsp">Games</a></li>
-					<li><a href="categories.jsp">Blog</a></li>
-					
-					<li><a href="contact.jsp">Contato</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+	
 	
 
 	
@@ -67,11 +40,11 @@
 		<div class="ln-title">Novas Noticias</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">Novo</span> Novas atualização sobre o site.  </div>
-				<div class="nt-item"><span class="strategy">Estrategia</span> Novas atualizações dos jogos de Estrategia.  </div>
-				<div class="nt-item"><span class="racing">Corrida</span> Novas atualizações dos jogos de corrida . </div>
-				<div class="nt-item"><span class="strategy">MMORPG</span>Especial de nata no Black desert esta bombando. </div>
-				<div class="nt-item"><span class="racing">MOBA</span>A nova pré-temporada do LOL já começou a proveite. </div>
+				<div class="nt-item"><span class="new">Novo</span>   </div>
+				<div class="nt-item"><span class="strategy">Estrategia</span>   </div>
+				<div class="nt-item"><span class="racing">Corrida</span>  </div>
+				<div class="nt-item"><span class="strategy">MMORPG</span> </div>
+				<div class="nt-item"><span class="racing">MOBA</span></div>
 			</div>
 		</div>
 	</div>
@@ -141,8 +114,8 @@
 			<ul class="footer-menu">
 				<li><a href="index.jsp">Inicio</a></li>
 				<li><a href="review.jsp">Games</a></li>
-				<li><a href="categories.jsp">Blog</a></li>
-				<li><a href="community.jsp">Forums</a></li>
+				<li><a href="categories.jsp">Videos</a></li>
+			
 				<li><a href="contact.jsp">Contato</a></li>
 			</ul>
 			<p class="copyright">
