@@ -112,7 +112,7 @@
 
                                         <a href="cadastro/alterar.jsp?pid=<%=usuario.getId()%>">Editar Perfil</a><br><br>
 
-                                        <a href="index.html">Sair</a><br><br>
+                                        <a href="Logout">Sair</a><br><br>
                                     </div>
                                 </center>
 
