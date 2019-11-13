@@ -88,19 +88,30 @@
                         <form class="comment-form">
                             <div class="row">
 
+                                <%
+                                    byte[] imagem = usuario.getFoto();
+                                    String encodedImage = Base64.getEncoder().encodeToString(imagem);
+
+                                %>
+
                                 <center>
                                     <div style="padding: 10px 10px 10px 10px;">
+
+                                        <img src="data:image/png;base64,<%=encodedImage%>" width='300' height='300'>
                                         
+                                        <br>
+                                        <br>
+
                                         Nickname: <%=usuario.getNickname()%><br><br>
 
                                         Nome: <%=usuario.getNome()%> <br><br>
-                                           
+
                                         E-mail: <%=usuario.getEmail()%><br><br>
 
                                         ID: <%=usuario.getId()%> <br><br>
 
                                         <a href="cadastro/alterar.jsp?pid=<%=usuario.getId()%>">Editar Perfil</a><br><br>
-                                        
+
                                         <a href="index.html">Sair</a><br><br>
                                     </div>
                                 </center>
@@ -124,7 +135,7 @@
                     <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="review.jsp">Games</a></li>
                     <li><a href="categories.jsp">Videos</a></li>
-                    
+
                     <li><a href="contact.jsp">Contato</a></li>
                 </ul>
                 <p class="copyright">

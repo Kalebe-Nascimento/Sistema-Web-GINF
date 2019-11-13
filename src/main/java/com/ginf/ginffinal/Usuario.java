@@ -22,18 +22,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kalebe
+ * @author aluno
  */
 @Entity
 @Table(name = "usuario")
-@XmlRootElement 
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByNickname", query = "SELECT u FROM Usuario u WHERE u.nickname = :nickname")
     , @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome")
     , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")
     , @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")
-    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")})
+    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")
+    , @NamedQuery(name = "Usuario.findByAdmin", query = "SELECT u FROM Usuario u WHERE u.admin = :admin")
+    , @NamedQuery(name = "Usuario.findByExtensao", query = "SELECT u FROM Usuario u WHERE u.extensao = :extensao")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,18 +51,26 @@ public class Usuario implements Serializable {
     @Size(max = 40)
     @Column(name = "email")
     private String email;
-    @Column(name = "admin")
-    private boolean admin = false;
     @Size(max = 30)
     @Column(name = "senha")
     private String senha;
-      @Id
+    @Id
     @Basic(optional = false)
     @NotNull
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
-    @SequenceGenerator(name = "meugerador", sequenceName = "sq_usuario")
+    @SequenceGenerator(name="meugerador", sequenceName = "sq_usuario")
     @Column(name = "id")
     private Integer id;
+    //@Lob
+    @Column(name = "foto")
+    private byte[] foto;
+    
+    @Column(name = "admin")
+    private Boolean admin;
+    
+    @Size(max = 2147483647)
+    @Column(name = "extensao")
+    private String extensao;
 
     public Usuario() {
     }
@@ -114,6 +124,30 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+    public String getExtensao() {
+        return extensao;
+    }
+
+    public void setExtensao(String extensao) {
+        this.extensao = extensao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -137,20 +171,6 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.ginf.ginffinal.Usuario[ id=" + id + " ]";
-    }
-
-    /**
-     * @return the admin
-     */
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    /**
-     * @param admin the admin to set
-     */
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
     }
     
 }

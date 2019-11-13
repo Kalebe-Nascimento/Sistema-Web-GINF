@@ -7,12 +7,15 @@ package servlet;
 
 import com.ginf.ginffinal.Usuario;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.commons.io.IOUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -77,15 +80,24 @@ public class ServletGinf extends HttpServlet {
             throws ServletException, IOException {
 
         String idtext = request.getParameter("pid");
+        Part filePart = request.getPart("foto");
         String nome = request.getParameter("nome");
         String nick = request.getParameter("nickname");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String admin = request.getParameter("admin");
         
+        
+        Usuario usuario = new Usuario();
+        
+          if (filePart != null) {
+            InputStream inputStream = filePart.getInputStream();          
+            usuario.setFoto(IOUtils.toByteArray(inputStream));            
+            usuario.setExtensao(filePart.getContentType());
+        }
+        
 
         //Cria instancia do usuario
-        Usuario usuario = new Usuario();
         //Detecta se é usuario novo ou antigo
         if (!idtext.isEmpty()) {
             Integer id = Integer.parseInt(idtext);
@@ -103,16 +115,19 @@ public class ServletGinf extends HttpServlet {
         } else {
             usuario.setAdmin(false);
         }
-
+        
         Session sessionRecheio;
         sessionRecheio = HibernateUtil.getSession();
         Transaction tr = sessionRecheio.beginTransaction();
         sessionRecheio.saveOrUpdate(usuario);
         tr.commit();
-
+        
         HttpSession httpSession = request.getSession();
         httpSession.setAttribute("UsuarioLogado", usuario);
         response.sendRedirect("usuarioperfil.jsp");
+
+        
+
 
     }
 

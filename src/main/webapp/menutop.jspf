@@ -29,7 +29,7 @@
                 <li><a href="index.jsp">Inicio</a></li>
                 <li><a href="review.jsp">Noticia</a></li>
                 <li><a href="categories.jsp">Videos</a></li>
-                    <% if (usuario != null && usuario.isAdmin()) { %>
+                    <% if (false) { %>
                 <li><a href="reviewAdmin.jsp">Nova Postagem</a></li>
                 <li><a href="adm.jsp">Novo Admin</a></li>
                     <% }%>
