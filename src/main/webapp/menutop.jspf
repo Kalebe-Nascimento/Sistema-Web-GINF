@@ -30,7 +30,7 @@
                 <li><a href="review.jsp">Noticia</a></li>
                 <li><a href="categories.jsp">Videos</a></li>
                     <% if (usuario != null && usuario.isAdmin()) { %>
-                <li><a href="reviewAdmin.jsp">Nova Postagem</a></li>
+                <li><a href="novapostagem.jsp">Nova Postagem</a></li>
                 <li><a href="adm.jsp">Novo Admin</a></li>
                     <% }%>
                 <li><a href="contact.jsp">Contato</a></li>
