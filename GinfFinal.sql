@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2019-11-13 18:00:49 BRST
+-- Started on 2019-11-13 18:03:49 BRST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2167 (class 0 OID 0)
+-- TOC entry 2170 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -70,6 +70,21 @@ CREATE TABLE postagem (
 ALTER TABLE postagem OWNER TO postgres;
 
 --
+-- TOC entry 185 (class 1259 OID 66580)
+-- Name: sq_postagem; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_postagem
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_postagem OWNER TO postgres;
+
+--
 -- TOC entry 183 (class 1259 OID 66547)
 -- Name: sq_usuario; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -104,7 +119,7 @@ CREATE TABLE usuario (
 ALTER TABLE usuario OWNER TO postgres;
 
 --
--- TOC entry 2156 (class 0 OID 66535)
+-- TOC entry 2158 (class 0 OID 66535)
 -- Dependencies: 181
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -114,7 +129,7 @@ COPY comentario (usuario, comentario, publicacao) FROM stdin;
 
 
 --
--- TOC entry 2157 (class 0 OID 66541)
+-- TOC entry 2159 (class 0 OID 66541)
 -- Dependencies: 182
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -124,7 +139,16 @@ COPY postagem (id_post, titulo, texto, data_hora, conteudo, id_adm) FROM stdin;
 
 
 --
--- TOC entry 2168 (class 0 OID 0)
+-- TOC entry 2171 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: sq_postagem; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sq_postagem', 1, false);
+
+
+--
+-- TOC entry 2172 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: sq_usuario; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -133,7 +157,7 @@ SELECT pg_catalog.setval('sq_usuario', 32, true);
 
 
 --
--- TOC entry 2159 (class 0 OID 66549)
+-- TOC entry 2161 (class 0 OID 66549)
 -- Dependencies: 184
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -144,7 +168,7 @@ kalebe	kalebe	kalebe@gmail.com	000	1600	\\xffd8ffe000104a46494600010100000100010
 
 
 --
--- TOC entry 2033 (class 2606 OID 66556)
+-- TOC entry 2035 (class 2606 OID 66556)
 -- Name: pk_comentario; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -153,7 +177,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- TOC entry 2038 (class 2606 OID 66558)
+-- TOC entry 2040 (class 2606 OID 66558)
 -- Name: pk_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -162,7 +186,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- TOC entry 2036 (class 2606 OID 66560)
+-- TOC entry 2038 (class 2606 OID 66560)
 -- Name: pk_id_post; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -171,7 +195,7 @@ ALTER TABLE ONLY postagem
 
 
 --
--- TOC entry 2034 (class 1259 OID 66561)
+-- TOC entry 2036 (class 1259 OID 66561)
 -- Name: fki_adm; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -179,7 +203,7 @@ CREATE INDEX fki_adm ON postagem USING btree (id_adm);
 
 
 --
--- TOC entry 2030 (class 1259 OID 66562)
+-- TOC entry 2032 (class 1259 OID 66562)
 -- Name: fki_publicacao; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -187,7 +211,7 @@ CREATE INDEX fki_publicacao ON comentario USING btree (publicacao);
 
 
 --
--- TOC entry 2031 (class 1259 OID 66563)
+-- TOC entry 2033 (class 1259 OID 66563)
 -- Name: fki_usuario; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -195,7 +219,7 @@ CREATE INDEX fki_usuario ON comentario USING btree (usuario);
 
 
 --
--- TOC entry 2041 (class 2606 OID 66564)
+-- TOC entry 2043 (class 2606 OID 66564)
 -- Name: fk_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -204,7 +228,7 @@ ALTER TABLE ONLY postagem
 
 
 --
--- TOC entry 2039 (class 2606 OID 66569)
+-- TOC entry 2041 (class 2606 OID 66569)
 -- Name: fk_publicacao; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -213,7 +237,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- TOC entry 2040 (class 2606 OID 66574)
+-- TOC entry 2042 (class 2606 OID 66574)
 -- Name: fk_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -222,7 +246,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- TOC entry 2166 (class 0 OID 0)
+-- TOC entry 2169 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -233,7 +257,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2019-11-13 18:00:49 BRST
+-- Completed on 2019-11-13 18:03:49 BRST
 
 --
 -- PostgreSQL database dump complete
