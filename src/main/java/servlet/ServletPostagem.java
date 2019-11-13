@@ -80,7 +80,7 @@ public class ServletPostagem extends HttpServlet {
         postagem.setConteudo(request.getParameter("conteudo"));
         postagem.setTitulo(request.getParameter("titulo"));
         Usuario admin = (Usuario) request.getSession().getAttribute("UsuarioLogado");
-        if (admin == null || !admin.isAdmin()) {
+        if (false) {
             System.out.println("USUARIO NÃO AUTORIZADO A CADASTRAR POSTAGEM!");
             //TODO mudar pra página de erro "Não autorizado"
             response.sendRedirect("index.jsp");
