@@ -1,11 +1,11 @@
-﻿--
+--
 -- PostgreSQL database dump
 --
 
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2019-10-30 12:54:25 BRST
+-- Started on 2019-11-13 12:01:28 BRST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -39,7 +39,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 181 (class 1259 OID 16674)
+-- TOC entry 181 (class 1259 OID 25716)
 -- Name: comentario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -52,7 +52,7 @@ CREATE TABLE comentario (
 ALTER TABLE comentario OWNER TO postgres;
 
 --
--- TOC entry 182 (class 1259 OID 16680)
+-- TOC entry 182 (class 1259 OID 25722)
 -- Name: postagem; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -69,7 +69,7 @@ CREATE TABLE postagem (
 ALTER TABLE postagem OWNER TO postgres;
 
 --
--- TOC entry 183 (class 1259 OID 16686)
+-- TOC entry 183 (class 1259 OID 25728)
 -- Name: sq_usuario; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -84,7 +84,7 @@ CREATE SEQUENCE sq_usuario
 ALTER TABLE sq_usuario OWNER TO postgres;
 
 --
--- TOC entry 184 (class 1259 OID 16688)
+-- TOC entry 184 (class 1259 OID 25730)
 -- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -102,21 +102,23 @@ CREATE TABLE usuario (
 ALTER TABLE usuario OWNER TO postgres;
 
 --
--- TOC entry 2152 (class 0 OID 16674)
+-- TOC entry 2152 (class 0 OID 25716)
 -- Dependencies: 181
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
+COPY comentario (usuario, comentario) FROM stdin;
+\.
 
 
 --
--- TOC entry 2153 (class 0 OID 16680)
+-- TOC entry 2153 (class 0 OID 25722)
 -- Dependencies: 182
 -- Data for Name: postagem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
+COPY postagem (id_post, titulo, texto, data_hora, conteudo, id_adm) FROM stdin;
+\.
 
 
 --
@@ -129,16 +131,18 @@ SELECT pg_catalog.setval('sq_usuario', 33, true);
 
 
 --
--- TOC entry 2155 (class 0 OID 16688)
+-- TOC entry 2155 (class 0 OID 25730)
 -- Dependencies: 184
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
+COPY usuario (nickname, nome, email, senha, id, foto, admin) FROM stdin;
+maria ginf	maria clara	mariaclaras933@gmail.com	123456	1600	\N	t
+\.
 
 
 --
--- TOC entry 2031 (class 2606 OID 16695)
+-- TOC entry 2031 (class 2606 OID 25737)
 -- Name: pk_comentario; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -147,7 +151,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- TOC entry 2036 (class 2606 OID 16697)
+-- TOC entry 2036 (class 2606 OID 25739)
 -- Name: pk_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -156,7 +160,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- TOC entry 2034 (class 2606 OID 16699)
+-- TOC entry 2034 (class 2606 OID 25741)
 -- Name: pk_id_post; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -165,7 +169,7 @@ ALTER TABLE ONLY postagem
 
 
 --
--- TOC entry 2032 (class 1259 OID 16700)
+-- TOC entry 2032 (class 1259 OID 25742)
 -- Name: fki_adm; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -173,7 +177,7 @@ CREATE INDEX fki_adm ON postagem USING btree (id_adm);
 
 
 --
--- TOC entry 2037 (class 2606 OID 16701)
+-- TOC entry 2037 (class 2606 OID 25743)
 -- Name: fk_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -193,8 +197,9 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2019-10-30 12:54:25 BRST
+-- Completed on 2019-11-13 12:01:28 BRST
 
 --
 -- PostgreSQL database dump complete
 --
+
