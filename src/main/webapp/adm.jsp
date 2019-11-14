@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form method="post" action="ServletGinf" > 
+	<form method="post" action="ServletGinf" enctype="multipart/form-data"> 
     <div class="main">
 
         <section class="signup">
          
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form">
+                    <form method="POST" id="signup-form" class="signup-form" >
                         <h2 class="form-title">Criando conta</h2>
                         <div hidden>
                             <input type="text" name="pid" value="">
