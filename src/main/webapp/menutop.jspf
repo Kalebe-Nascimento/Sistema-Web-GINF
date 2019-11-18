@@ -34,6 +34,7 @@
                 <li><a href="adm.jsp">Novo Admin</a></li>
                     <% }%>
                 <li><a href="contact.jsp">Contato</a></li>
+                <li><a href="postagens.jsp">Postagens</a></li>
             </ul>
         </nav>
     </div>
