@@ -5,16 +5,14 @@
  */
 package servlet;
 
-import com.ginf.ginffinal.Comentario;
+import controle.ComentarioControle;
+import com.ginf.ginffinal.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import util.HibernateUtil;
 
 /**
  *
@@ -39,10 +37,10 @@ public class ServletComentario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletComentario</title>");            
+            out.println("<title>Servlet ComentarioServletSA</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletComentario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ComentarioServletSA at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,14 +72,31 @@ public class ServletComentario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String idtext = request.getParameter("pid");
+        String conteudo = request.getParameter("comentario");
+        String idComentador = request.getParameter("comentador");
+        String idPublicacao = request.getParameter("publicacao");
+
         Comentario comentario = new Comentario();
-        comentario.setComentario(request.getParameter("comentario"));
-        Session sessionRecheio;
-        sessionRecheio = HibernateUtil.getSession();
-        Transaction tr = sessionRecheio.beginTransaction();
-        sessionRecheio.saveOrUpdate(comentario);
-        tr.commit();
-        response.sendRedirect("comentario.jsp");
+        Postagem postagem = new Postagem();
+        Usuario usuario = new Usuario();
+
+        if (!idtext.isEmpty()) {
+            Integer id = Integer.parseInt(idtext);
+            comentario.setId(id);
+        }
+
+        postagem.setIdPost(Integer.parseInt(idPublicacao));
+        usuario.setId(Integer.parseInt(idComentador));
+        
+        comentario.setComentario(conteudo);
+        comentario.setUsuario(usuario);
+        comentario.setPublicacao(postagem);
+        System.out.println("Filipin "+conteudo + usuario + postagem);
+        
+        ComentarioControle.salvar(comentario);
+        response.sendRedirect("postagens.jsp");
     }
 
     /**

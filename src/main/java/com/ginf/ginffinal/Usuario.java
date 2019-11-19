@@ -45,6 +45,8 @@ public class Usuario implements Serializable {
     @Lob
     @Column(name = "foto")
     private byte[] foto;
+    @OneToMany(mappedBy = "usuario")
+    private Collection<Comentario> comentarioCollection;
     @OneToMany(mappedBy = "idAdm")
     private Collection<Postagem> postagemCollection;
 
@@ -173,13 +175,6 @@ public class Usuario implements Serializable {
         return "com.ginf.ginffinal.Usuario[ id=" + id + " ]";
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 
     @XmlTransient
     public Collection<Postagem> getPostagemCollection() {
@@ -188,6 +183,24 @@ public class Usuario implements Serializable {
 
     public void setPostagemCollection(Collection<Postagem> postagemCollection) {
         this.postagemCollection = postagemCollection;
+    }
+
+
+    @XmlTransient
+    public Collection<Comentario> getComentarioCollection() {
+        return comentarioCollection;
+    }
+
+    public void setComentarioCollection(Collection<Comentario> comentarioCollection) {
+        this.comentarioCollection = comentarioCollection;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
     
 }

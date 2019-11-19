@@ -7,7 +7,7 @@
 <%@page import="java.util.Base64"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="com.ginf.ginffinal.Postagem"%>
+<%@page import="com.ginf.ginffinal.*"%>
 <%@page import="util.HibernateUtil"%>
 <%@page import="org.hibernate.Session"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -72,15 +72,33 @@
         %>
         <img src="data:image/png;base64,<%=encodedImage%>" width='300' height='300'>
         <span id="titulo">
-            <h2><%=postagem.getTitulo()%></h2>
+            <h2>Título: <%=postagem.getTitulo()%></h2>
             <br>
         </span>
-        <%=postagem.getConteudo()%>
+        Conteúdo: <%=postagem.getConteudo()%><br><br>
+        <b>Comentários:</b><br>
+        <%
+            for (Comentario post : postagem.getComentarioCollection()) {
+                Usuario comentador = post.getUsuario();
+        %>
+        <%=comentador.getNome()%>: <%=post.getComentario()%><br>
+        <%
+            }
+        %>
+        <form method="post" action="ServletComentario">
+            <div hidden>
+                <input type="text" name="comentador" value="<%=usuario.getId()%>">
+                <input type="text" name="publicacao" value="<%=postagem.getIdPost()%>">
+                <input type="text" name="pid" value="">
+            </div>
+            <input type="text" name="comentario" value="">
+            <input type="submit">
+        </form>
+        <br>
         <%
             }
         %>
         <section class="footer-top-section">
-
             <div class="container">
                 <footer class="footer-section">
                     <div class="container">

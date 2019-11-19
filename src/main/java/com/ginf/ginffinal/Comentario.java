@@ -9,9 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,33 +31,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Comentario.findAll", query = "SELECT c FROM Comentario c")
-    , @NamedQuery(name = "Comentario.findByUsuario", query = "SELECT c FROM Comentario c WHERE c.usuario = :usuario")
-    , @NamedQuery(name = "Comentario.findByComentario", query = "SELECT c FROM Comentario c WHERE c.comentario = :comentario")})
+    , @NamedQuery(name = "Comentario.findByComentario", query = "SELECT c FROM Comentario c WHERE c.comentario = :comentario")
+    , @NamedQuery(name = "Comentario.findById", query = "SELECT c FROM Comentario c WHERE c.id = :id")})
 public class Comentario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Column(name = "usuario")
-    private Integer usuario;
-    @Id
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "comentario")
     private String comentario;
+    
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
+    @SequenceGenerator(name="meugerador", sequenceName = "sq_comentario")
+    @Column(name = "id")
+    private Integer id;
+    
+    @JoinColumn(name = "publicacao", referencedColumnName = "id_post")
+    @ManyToOne
+    private Postagem publicacao;
+    
+    @JoinColumn(name = "usuario", referencedColumnName = "id")
+    @ManyToOne
+    private Usuario usuario;
 
     public Comentario() {
     }
 
-    public Comentario(String comentario) {
+    public Comentario(Integer id) {
+        this.id = id;
+    }
+
+    public Comentario(Integer id, String comentario) {
+        this.id = id;
         this.comentario = comentario;
-    }
-
-    public Integer getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Integer usuario) {
-        this.usuario = usuario;
     }
 
     public String getComentario() {
@@ -63,10 +78,34 @@ public class Comentario implements Serializable {
         this.comentario = comentario;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Postagem getPublicacao() {
+        return publicacao;
+    }
+
+    public void setPublicacao(Postagem publicacao) {
+        this.publicacao = publicacao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (comentario != null ? comentario.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -77,7 +116,7 @@ public class Comentario implements Serializable {
             return false;
         }
         Comentario other = (Comentario) object;
-        if ((this.comentario == null && other.comentario != null) || (this.comentario != null && !this.comentario.equals(other.comentario))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -85,7 +124,7 @@ public class Comentario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ginf.ginffinal.Comentario[ comentario=" + comentario + " ]";
+        return "com.ginf.ginffinal.Comentario[ id=" + id + " ]";
     }
     
 }

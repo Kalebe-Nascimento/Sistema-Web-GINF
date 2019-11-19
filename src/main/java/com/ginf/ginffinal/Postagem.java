@@ -6,6 +6,7 @@
 package com.ginf.ginffinal;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,6 +27,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,6 +45,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Postagem.findByConteudo", query = "SELECT p FROM Postagem p WHERE p.conteudo = :conteudo")
     , @NamedQuery(name = "Postagem.findByExtensao", query = "SELECT p FROM Postagem p WHERE p.extensao = :extensao")})
 public class Postagem implements Serializable {
+
+    @Lob
+    @Column(name = "foto")
+    private byte[] foto;
+    @OneToMany(mappedBy = "publicacao")
+    private Collection<Comentario> comentarioCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -70,9 +79,6 @@ public class Postagem implements Serializable {
     @Column(name = "conteudo")
     private String conteudo;
     
-    //@Lob
-    @Column(name = "foto")
-    private byte[] foto;
     
     @Size(max = 2147483647)
     @Column(name = "extensao")
@@ -134,13 +140,6 @@ public class Postagem implements Serializable {
         this.conteudo = conteudo;
     }
     
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
     
     public String getExtensao() {
         return extensao;
@@ -181,6 +180,24 @@ public class Postagem implements Serializable {
     @Override
     public String toString() {
         return "com.ginf.ginffinal.Postagem[ idPost=" + idPost + " ]";
+    }
+
+
+    @XmlTransient
+    public Collection<Comentario> getComentarioCollection() {
+        return comentarioCollection;
+    }
+
+    public void setComentarioCollection(Collection<Comentario> comentarioCollection) {
+        this.comentarioCollection = comentarioCollection;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
     
 }
