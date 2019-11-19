@@ -8,12 +8,15 @@ package servlet;
 import com.ginf.ginffinal.Postagem;
 import com.ginf.ginffinal.Usuario;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import org.apache.commons.io.IOUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -79,7 +82,16 @@ public class ServletPostagem extends HttpServlet {
         Postagem postagem = new Postagem();
         postagem.setConteudo(request.getParameter("conteudo"));
         postagem.setTitulo(request.getParameter("titulo"));
+        Part filePart = request.getPart("foto");
+        
         Usuario admin = (Usuario) request.getSession().getAttribute("UsuarioLogado");
+        
+        if (filePart != null) {
+            InputStream inputStream = filePart.getInputStream();          
+            postagem.setFoto(IOUtils.toByteArray(inputStream));            
+            postagem.setExtensao(filePart.getContentType());
+        }
+        
         if (false) {
             System.out.println("USUARIO NÃO AUTORIZADO A CADASTRAR POSTAGEM!");
             //TODO mudar pra página de erro "Não autorizado"

@@ -68,7 +68,7 @@
 
                                 <center>
 
-                                    <form method="POST" action="ServletPostagem" > 
+                                    <form method="POST" action="ServletPostagem" enctype="multipart/form-data"> 
                                         <div class="form-group">
                                             <input type="text" class="form-input" name="titulo" id="name" placeholder="titulo">
                                         </div>

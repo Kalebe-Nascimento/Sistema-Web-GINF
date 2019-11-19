@@ -37,22 +37,28 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Postagem.findAll", query = "SELECT p FROM Postagem p")
     , @NamedQuery(name = "Postagem.findByIdPost", query = "SELECT p FROM Postagem p WHERE p.idPost = :idPost")
     , @NamedQuery(name = "Postagem.findByTitulo", query = "SELECT p FROM Postagem p WHERE p.titulo = :titulo")
+    , @NamedQuery(name = "Postagem.findByTexto", query = "SELECT p FROM Postagem p WHERE p.texto = :texto")
     , @NamedQuery(name = "Postagem.findByDataHora", query = "SELECT p FROM Postagem p WHERE p.dataHora = :dataHora")
-    , @NamedQuery(name = "Postagem.findByConteudo", query = "SELECT p FROM Postagem p WHERE p.conteudo = :conteudo")})
+    , @NamedQuery(name = "Postagem.findByConteudo", query = "SELECT p FROM Postagem p WHERE p.conteudo = :conteudo")
+    , @NamedQuery(name = "Postagem.findByExtensao", query = "SELECT p FROM Postagem p WHERE p.extensao = :extensao")})
 public class Postagem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meugerador")
-    @SequenceGenerator(name = "meugerador", sequenceName = "sq_postagem")
+    @SequenceGenerator(name="meugerador", sequenceName = "sq_usuario")
+    @NotNull
     @Column(name = "id_post")
     private Integer idPost;
     
     @Size(max = 100)
     @Column(name = "titulo")
     private String titulo;
+    
+    @Size(max = 2147483647)
+    @Column(name = "texto")
+    private String texto;
     
     @Column(name = "data_hora")
     @Temporal(TemporalType.TIMESTAMP)
@@ -64,9 +70,13 @@ public class Postagem implements Serializable {
     @Column(name = "conteudo")
     private String conteudo;
     
-    /*@Lob
+    //@Lob
     @Column(name = "foto")
-    private byte[] foto;*/
+    private byte[] foto;
+    
+    @Size(max = 2147483647)
+    @Column(name = "extensao")
+    private String extensao;
     
     @JoinColumn(name = "id_adm", referencedColumnName = "id")
     @ManyToOne
@@ -100,6 +110,14 @@ public class Postagem implements Serializable {
         this.titulo = titulo;
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
     public Date getDataHora() {
         return dataHora;
     }
@@ -115,15 +133,23 @@ public class Postagem implements Serializable {
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
     }
-
-    /*public byte[] getFoto() {
+    
+    public byte[] getFoto() {
         return foto;
     }
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
-    }*/
+    }
+    
+    public String getExtensao() {
+        return extensao;
+    }
 
+    public void setExtensao(String extensao) {
+        this.extensao = extensao;
+    }
+    
     public Usuario getIdAdm() {
         return idAdm;
     }
@@ -156,5 +182,5 @@ public class Postagem implements Serializable {
     public String toString() {
         return "com.ginf.ginffinal.Postagem[ idPost=" + idPost + " ]";
     }
-
+    
 }

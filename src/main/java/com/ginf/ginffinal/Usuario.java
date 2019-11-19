@@ -6,19 +6,23 @@
 package com.ginf.ginffinal;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,6 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Usuario.findByAdmin", query = "SELECT u FROM Usuario u WHERE u.admin = :admin")
     , @NamedQuery(name = "Usuario.findByExtensao", query = "SELECT u FROM Usuario u WHERE u.extensao = :extensao")})
 public class Usuario implements Serializable {
+
+    @Lob
+    @Column(name = "foto")
+    private byte[] foto;
+    @OneToMany(mappedBy = "idAdm")
+    private Collection<Postagem> postagemCollection;
 
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -61,9 +71,6 @@ public class Usuario implements Serializable {
     @SequenceGenerator(name="meugerador", sequenceName = "sq_usuario")
     @Column(name = "id")
     private Integer id;
-    //@Lob
-    @Column(name = "foto")
-    private byte[] foto;
     
     @Column(name = "admin")
     private Boolean admin;
@@ -124,13 +131,6 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 
     public Boolean isAdmin() {
         return admin;
@@ -171,6 +171,23 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.ginf.ginffinal.Usuario[ id=" + id + " ]";
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    @XmlTransient
+    public Collection<Postagem> getPostagemCollection() {
+        return postagemCollection;
+    }
+
+    public void setPostagemCollection(Collection<Postagem> postagemCollection) {
+        this.postagemCollection = postagemCollection;
     }
     
 }

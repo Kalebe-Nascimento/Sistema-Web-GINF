@@ -4,6 +4,7 @@
     Author     : aluno
 --%>
 
+<%@page import="java.util.Base64"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ginf.ginffinal.Postagem"%>
@@ -56,27 +57,30 @@
         <h2>Postagens</h2>
         <br>
         <%
-                Session session1 = HibernateUtil.getSession();
-                String hql = "from Postagem u";
-                //  Post postagem = (Post) session1.createQuery(hql).list();
-                List<Postagem> lista = (List) session1.createQuery(hql).list();
-                request.setAttribute("postagens", lista);
-                System.out.println(lista);
-                for (Iterator it = lista.iterator(); it.hasNext();) {
-                    Postagem postagem = (Postagem) it.next();
-                    String codigo = postagem.getIdPost().toString();
-                    usuario = postagem.getIdAdm();
-            %>
-            <span id="titulo">
-                <h2><%=postagem.getTitulo()%></h2>
-                <br>
-            </span>
-            <%=postagem.getConteudo()%>
-            <%
-                }
-            %>
+            Session session1 = HibernateUtil.getSession();
+            String hql = "from Postagem u";
+            //  Post postagem = (Post) session1.createQuery(hql).list();
+            List<Postagem> lista = (List) session1.createQuery(hql).list();
+            request.setAttribute("postagens", lista);
+            System.out.println(lista);
+            for (Iterator it = lista.iterator(); it.hasNext();) {
+                Postagem postagem = (Postagem) it.next();
+                String codigo = postagem.getIdPost().toString();
+                usuario = postagem.getIdAdm();
+                byte[] imagem = usuario.getFoto();
+                String encodedImage = Base64.getEncoder().encodeToString(imagem);
+        %>
+        <img src="data:image/png;base64,<%=encodedImage%>" width='300' height='300'>
+        <span id="titulo">
+            <h2><%=postagem.getTitulo()%></h2>
+            <br>
+        </span>
+        <%=postagem.getConteudo()%>
+        <%
+            }
+        %>
         <section class="footer-top-section">
-            
+
             <div class="container">
                 <footer class="footer-section">
                     <div class="container">
