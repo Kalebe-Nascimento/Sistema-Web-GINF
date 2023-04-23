@@ -1,2 +1,2 @@
 # CadastroGINF
-Cadastro do ginf funcionando perfeitamente
+Sistema do ginf funcionando perfeitamente
